@@ -9,9 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 
-let fizBuzz = () => {
-  return console.log('hey')
-}
+import fizBuzz from './alogorithms/fizzBuzz'
 
 const App = () => {
   return (
@@ -27,12 +25,6 @@ const App = () => {
           <Text style={styles.text}>fizBuzz</Text>
         </TouchableOpacity>
         <View style={styles.spacer10} />
-        <TouchableOpacity
-          onPress={fizBuzz}
-          style={styles.button}
-        >
-          <Text style={styles.text}>fizBuzz 2</Text>
-        </TouchableOpacity>
       </ScrollView>
     </View>
   )
