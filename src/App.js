@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 
 import fizBuzz from './alogorithms/fizzBuzz'
+import stringReversal from './alogorithms/stringReversal'
 
 const App = () => {
   return (
@@ -23,6 +24,13 @@ const App = () => {
           style={styles.button}
         >
           <Text style={styles.text}>fizBuzz</Text>
+        </TouchableOpacity>
+        <View style={styles.spacer10} />
+        <TouchableOpacity
+          onPress={stringReversal}
+          style={styles.button}
+        >
+          <Text style={styles.text}> string Reversal</Text>
         </TouchableOpacity>
         <View style={styles.spacer10} />
       </ScrollView>
