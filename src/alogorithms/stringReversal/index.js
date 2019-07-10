@@ -1,9 +1,27 @@
 let stringReversal = () => {
   let str = 'apple'
-  let arr = str.split('')
-  let revArr = arr.reverse()
-  let reversed = revArr.join('')
-  console.log(reversed)
+  let output = str
+    .split('')
+    .reverse()
+    .join('')
+  console.log(output)
 }
 
-export default stringReversal
+let stringReversal2 = () => {
+  let str = 'apple'
+  let output = ''
+  for (let character of str) {
+    output = character + output
+  }
+  console.log(output)
+}
+
+let stringReversal3 = () => {
+  let str = 'apple'
+  let output = str
+    .split('')
+    .reduce((acc, char) => char + acc, '')
+  console.log(output)
+}
+
+export default stringReversal3
