@@ -1,41 +1,77 @@
 import React, { Fragment } from 'react'
 import {
-  SafeAreaView,
   StyleSheet,
   ScrollView,
   View,
   Text,
-  StatusBar,
   TouchableOpacity,
+  TextInput,
 } from 'react-native'
 
 import fizBuzz from './alogorithms/fizzBuzz'
 import stringReversal from './alogorithms/stringReversal'
+import pallindrom from './alogorithms/pallindrom'
 
-const App = () => {
-  return (
-    <View style={styles.viewContainer}>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        contentContainerStyle={styles.scrollView}
-      >
-        <TouchableOpacity
-          onPress={fizBuzz}
-          style={styles.button}
+export default class App extends React.Component {
+  state = {
+    text: '',
+    answer: '',
+  }
+  render() {
+    return (
+      <View style={styles.viewContainer}>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          contentContainerStyle={styles.scrollView}
         >
-          <Text style={styles.text}>fizBuzz</Text>
-        </TouchableOpacity>
-        <View style={styles.spacer10} />
-        <TouchableOpacity
-          onPress={stringReversal}
-          style={styles.button}
-        >
-          <Text style={styles.text}> string Reversal</Text>
-        </TouchableOpacity>
-        <View style={styles.spacer10} />
-      </ScrollView>
-    </View>
-  )
+          <TouchableOpacity
+            onPress={fizBuzz}
+            style={styles.button}
+          >
+            <Text style={styles.text}>fizBuzz</Text>
+          </TouchableOpacity>
+          <View style={styles.spacer10} />
+          <TouchableOpacity
+            onPress={stringReversal}
+            style={styles.button}
+          >
+            <Text style={styles.text}>
+              {' '}
+              string Reversal
+            </Text>
+          </TouchableOpacity>
+          <View style={styles.spacer10} />
+          <TextInput
+            style={{
+              height: 40,
+              width: 300,
+              borderColor: 'gray',
+              borderWidth: 1,
+            }}
+            onChangeText={text => this.setState({ text })}
+            value={this.state.text}
+          />
+          <TouchableOpacity
+            onPress={async () => {
+              let ans = await pallindrom(this.state.text)
+              this.setState({
+                answer: ans,
+              })
+            }}
+            style={styles.button}
+          >
+            <Text style={styles.text}> Pallindrom ? </Text>
+          </TouchableOpacity>
+          {this.state.answer != '' ? (
+            <Text style={styles.textContainer}>
+              {this.state.answer}
+            </Text>
+          ) : null}
+          <View style={styles.spacer10} />
+        </ScrollView>
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
@@ -63,5 +99,3 @@ const styles = StyleSheet.create({
     height: 10,
   },
 })
-
-export default App
