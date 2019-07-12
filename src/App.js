@@ -11,11 +11,14 @@ import {
 import fizBuzz from './alogorithms/fizzBuzz'
 import stringReversal from './alogorithms/stringReversal'
 import pallindrom from './alogorithms/pallindrom'
+import reverseInt from './alogorithms/reverseInt'
 
 export default class App extends React.Component {
   state = {
     text: '',
     answer: '',
+    num: '',
+    numAnswer: '',
   }
   render() {
     return (
@@ -65,6 +68,32 @@ export default class App extends React.Component {
           {this.state.answer != '' ? (
             <Text style={styles.textContainer}>
               {this.state.answer}
+            </Text>
+          ) : null}
+          <TextInput
+            style={{
+              height: 40,
+              width: 300,
+              borderColor: 'gray',
+              borderWidth: 1,
+            }}
+            onChangeText={num => this.setState({ num })}
+            value={this.state.num}
+          />
+          <TouchableOpacity
+            onPress={async () => {
+              let ans = await reverseInt(this.state.num)
+              this.setState({
+                numAnswer: ans,
+              })
+            }}
+            style={styles.button}
+          >
+            <Text style={styles.text}> reverse int </Text>
+          </TouchableOpacity>
+          {this.state.numAnswer != '' ? (
+            <Text style={styles.textContainer}>
+              {this.state.numAnswer}
             </Text>
           ) : null}
           <View style={styles.spacer10} />
