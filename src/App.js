@@ -12,6 +12,7 @@ import fizBuzz from './alogorithms/fizzBuzz'
 import stringReversal from './alogorithms/stringReversal'
 import pallindrom from './alogorithms/pallindrom'
 import reverseInt from './alogorithms/reverseInt'
+import maxChar from './alogorithms/maxChar'
 
 export default class App extends React.Component {
   state = {
@@ -19,6 +20,8 @@ export default class App extends React.Component {
     answer: '',
     num: '',
     numAnswer: '',
+    maxChar: '',
+    maxCharAns: '',
   }
   render() {
     return (
@@ -65,6 +68,7 @@ export default class App extends React.Component {
           >
             <Text style={styles.text}> Pallindrom ? </Text>
           </TouchableOpacity>
+          <View style={styles.spacer10} />
           {this.state.answer != '' ? (
             <Text style={styles.textContainer}>
               {this.state.answer}
@@ -96,6 +100,34 @@ export default class App extends React.Component {
               {this.state.numAnswer}
             </Text>
           ) : null}
+          <View style={styles.spacer10} />
+          <TextInput
+            style={{
+              height: 40,
+              width: 300,
+              borderColor: 'gray',
+              borderWidth: 1,
+            }}
+            onChangeText={maxChar =>
+              this.setState({ maxChar })
+            }
+            value={this.state.maxChar}
+          />
+          <TouchableOpacity
+            onPress={async () => {
+              let ans = await maxChar(this.state.maxChar)
+              this.setState({
+                maxCharAns: ans,
+              })
+            }}
+            style={styles.button}
+          >
+            <Text style={styles.text}>MaxChar</Text>
+          </TouchableOpacity>
+          <Text style={styles.textContainer}>
+            {this.state.maxCharAns}
+          </Text>
+
           <View style={styles.spacer10} />
         </ScrollView>
       </View>
