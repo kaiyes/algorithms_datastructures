@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { useState } from 'react'
 import {
   StyleSheet,
   ScrollView,
@@ -14,126 +14,112 @@ import pallindrom from './alogorithms/pallindrom'
 import reverseInt from './alogorithms/reverseInt'
 import maxChar from './alogorithms/maxChar'
 
-export default class App extends React.Component {
-  state = {
-    text: '',
-    answer: '',
-    num: '',
-    numAnswer: '',
-    maxChar: '',
-    maxCharAns: '',
-  }
-  render() {
-    return (
-      <View style={styles.viewContainer}>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          contentContainerStyle={styles.scrollView}
-        >
-          <TouchableOpacity
-            onPress={fizBuzz}
-            style={styles.button}
-          >
-            <Text style={styles.text}>fizBuzz</Text>
-          </TouchableOpacity>
-          <View style={styles.spacer10} />
-          <TouchableOpacity
-            onPress={stringReversal}
-            style={styles.button}
-          >
-            <Text style={styles.text}>
-              {' '}
-              string Reversal
-            </Text>
-          </TouchableOpacity>
-          <View style={styles.spacer10} />
-          <TextInput
-            style={{
-              height: 40,
-              width: 300,
-              borderColor: 'gray',
-              borderWidth: 1,
-            }}
-            onChangeText={text => this.setState({ text })}
-            value={this.state.text}
-          />
-          <TouchableOpacity
-            onPress={async () => {
-              let ans = await pallindrom(this.state.text)
-              this.setState({
-                answer: ans,
-              })
-            }}
-            style={styles.button}
-          >
-            <Text style={styles.text}> Pallindrom ? </Text>
-          </TouchableOpacity>
-          <View style={styles.spacer10} />
-          {this.state.answer != '' ? (
-            <Text style={styles.textContainer}>
-              {this.state.answer}
-            </Text>
-          ) : null}
-          <TextInput
-            style={{
-              height: 40,
-              width: 300,
-              borderColor: 'gray',
-              borderWidth: 1,
-            }}
-            onChangeText={num => this.setState({ num })}
-            value={this.state.num}
-          />
-          <TouchableOpacity
-            onPress={async () => {
-              let ans = await reverseInt(this.state.num)
-              this.setState({
-                numAnswer: ans,
-              })
-            }}
-            style={styles.button}
-          >
-            <Text style={styles.text}> reverse int </Text>
-          </TouchableOpacity>
-          {this.state.numAnswer != '' ? (
-            <Text style={styles.textContainer}>
-              {this.state.numAnswer}
-            </Text>
-          ) : null}
-          <View style={styles.spacer10} />
-          <TextInput
-            style={{
-              height: 40,
-              width: 300,
-              borderColor: 'gray',
-              borderWidth: 1,
-            }}
-            onChangeText={maxChar =>
-              this.setState({ maxChar })
-            }
-            value={this.state.maxChar}
-          />
-          <TouchableOpacity
-            onPress={async () => {
-              let ans = await maxChar(this.state.maxChar)
-              this.setState({
-                maxCharAns: ans,
-              })
-            }}
-            style={styles.button}
-          >
-            <Text style={styles.text}>MaxChar</Text>
-          </TouchableOpacity>
-          <Text style={styles.textContainer}>
-            {this.state.maxCharAns}
-          </Text>
+const App = () => {
+  const [palindromText, setPalindrom] = useState('')
+  const [palindromAns, setPalindromAns] = useState('')
+  const [revText, setRevText] = useState('')
+  const [revAns, setRevAns] = useState('')
+  const [maxCharecter, setMaxChar] = useState('')
+  const [maxCharAns, setMaxCharAns] = useState('')
 
-          <View style={styles.spacer10} />
-        </ScrollView>
-      </View>
-    )
-  }
+  return (
+    <View style={styles.viewContainer}>
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        contentContainerStyle={styles.scrollView}
+      >
+        <TouchableOpacity
+          onPress={fizBuzz}
+          style={styles.button}
+        >
+          <Text style={styles.text}>fizBuzz</Text>
+        </TouchableOpacity>
+        <View style={styles.spacer10} />
+        <TouchableOpacity
+          onPress={stringReversal}
+          style={styles.button}
+        >
+          <Text style={styles.text}> string Reversal</Text>
+        </TouchableOpacity>
+        <View style={styles.spacer10} />
+        <TextInput
+          style={{
+            height: 40,
+            width: 300,
+            borderColor: 'gray',
+            borderWidth: 1,
+          }}
+          onChangeText={text => setPalindrom(text)}
+          value={palindromText}
+        />
+        <TouchableOpacity
+          onPress={async () => {
+            let ans = await pallindrom(palindromText)
+            setPalindromAns(ans)
+          }}
+          style={styles.button}
+        >
+          <Text style={styles.text}> Pallindrom ? </Text>
+        </TouchableOpacity>
+        {palindromAns != '' ? (
+          <Text style={styles.textContainer}>
+            {palindromAns}
+          </Text>
+        ) : null}
+
+        <View style={styles.spacer10} />
+        <TextInput
+          style={{
+            height: 40,
+            width: 300,
+            borderColor: 'gray',
+            borderWidth: 1,
+          }}
+          onChangeText={num => setRevText(num)}
+          value={revText}
+        />
+        <TouchableOpacity
+          onPress={async () => {
+            let ans = await reverseInt(revText)
+            setRevAns(ans)
+          }}
+          style={styles.button}
+        >
+          <Text style={styles.text}> reverse int </Text>
+        </TouchableOpacity>
+        {revAns != '' ? (
+          <Text style={styles.textContainer}>{revAns}</Text>
+        ) : null}
+
+        <View style={styles.spacer10} />
+        <TextInput
+          style={{
+            height: 40,
+            width: 300,
+            borderColor: 'gray',
+            borderWidth: 1,
+          }}
+          onChangeText={text => setMaxChar(text)}
+          value={maxCharecter}
+        />
+        <TouchableOpacity
+          onPress={async () => {
+            let ans = await maxChar(maxCharecter)
+            setMaxCharAns(ans)
+          }}
+          style={styles.button}
+        >
+          <Text style={styles.text}>MaxChar</Text>
+        </TouchableOpacity>
+        <Text style={styles.textContainer}>
+          {maxCharAns}
+        </Text>
+      </ScrollView>
+    </View>
+  )
 }
+
+export default App
 
 const styles = StyleSheet.create({
   viewContainer: {
@@ -143,7 +129,6 @@ const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
     backgroundColor: 'white',
-    justifyContent: 'center',
     alignItems: 'center',
   },
   button: {
