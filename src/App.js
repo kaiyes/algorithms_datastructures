@@ -13,6 +13,7 @@ import stringReversal from './alogorithms/stringReversal'
 import pallindrom from './alogorithms/pallindrom'
 import reverseInt from './alogorithms/reverseInt'
 import maxChar from './alogorithms/maxChar'
+import chunked from './alogorithms/Chunk'
 
 const App = () => {
   const [palindromText, setPalindrom] = useState('')
@@ -21,6 +22,9 @@ const App = () => {
   const [revAns, setRevAns] = useState('')
   const [maxCharecter, setMaxChar] = useState('')
   const [maxCharAns, setMaxCharAns] = useState('')
+  const [chunkText, setChunk] = useState('')
+  const [chunkSize, setChunkSize] = useState(2)
+  const [chunkAns, setChunkAns] = useState('')
 
   return (
     <View style={styles.viewContainer}>
@@ -114,6 +118,42 @@ const App = () => {
         <Text style={styles.textContainer}>
           {maxCharAns}
         </Text>
+
+        <View style={styles.spacer10} />
+        <TextInput
+          style={{
+            height: 40,
+            width: 300,
+            borderColor: 'gray',
+            borderWidth: 1,
+          }}
+          onChangeText={async text => {
+            let arr = await text.split('')
+            setChunk(text)
+          }}
+          value={chunkText}
+        />
+        <TextInput
+          style={{
+            height: 40,
+            width: 40,
+            borderColor: 'gray',
+            borderWidth: 1,
+          }}
+          onChangeText={num => setChunkSize(num)}
+          value={chunkSize}
+        />
+
+        <TouchableOpacity
+          onPress={async () => {
+            let ans = await chunked(chunkText, chunkSize)
+            setChunkAns(ans)
+          }}
+          style={styles.button}
+        >
+          <Text style={styles.text}>MaxChar</Text>
+        </TouchableOpacity>
+        <Text style={styles.textContainer}>{chunkAns}</Text>
       </ScrollView>
     </View>
   )
