@@ -22,8 +22,6 @@ const App = () => {
   const [revAns, setRevAns] = useState('')
   const [maxCharecter, setMaxChar] = useState('')
   const [maxCharAns, setMaxCharAns] = useState('')
-  const [chunkText, setChunk] = useState('')
-  const [chunkSize, setChunkSize] = useState(2)
   const [chunkAns, setChunkAns] = useState('')
 
   return (
@@ -120,33 +118,10 @@ const App = () => {
         </Text>
 
         <View style={styles.spacer10} />
-        <TextInput
-          style={{
-            height: 40,
-            width: 300,
-            borderColor: 'gray',
-            borderWidth: 1,
-          }}
-          onChangeText={async text => {
-            let arr = await text.split('')
-            setChunk(text)
-          }}
-          value={chunkText}
-        />
-        <TextInput
-          style={{
-            height: 40,
-            width: 40,
-            borderColor: 'gray',
-            borderWidth: 1,
-          }}
-          onChangeText={num => setChunkSize(num)}
-          value={chunkSize}
-        />
 
         <TouchableOpacity
           onPress={async () => {
-            let ans = await chunked(chunkText, chunkSize)
+            let ans = await chunked()
             setChunkAns(ans)
           }}
           style={styles.button}

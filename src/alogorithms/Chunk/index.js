@@ -9,8 +9,20 @@ let chunk = (arr, size) => {
       last.push(element)
     }
   }
-  console.log(chunked)
   return chunked
 }
 
-export default chunk
+let chunked = () => {
+  arr = [1, 2, 3, 4, 5, 6, 7, 8]
+  size = 3
+  const chunkedArr = []
+  let i = 2
+  while (i <= arr.length) {
+    chunkedArr.push(arr.slice(i, i + size))
+    i += size
+  }
+  console.log(chunkedArr)
+  return chunkedArr
+}
+
+export default chunked
