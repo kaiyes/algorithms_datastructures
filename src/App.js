@@ -14,6 +14,7 @@ import pallindrom from './alogorithms/pallindrom'
 import reverseInt from './alogorithms/reverseInt'
 import maxChar from './alogorithms/maxChar'
 import chunked from './alogorithms/Chunk'
+import anagram from './alogorithms/anagrams'
 
 const App = () => {
   const [palindromText, setPalindrom] = useState('')
@@ -23,6 +24,7 @@ const App = () => {
   const [maxCharecter, setMaxChar] = useState('')
   const [maxCharAns, setMaxCharAns] = useState('')
   const [chunkAns, setChunkAns] = useState('')
+  const [anagramAns, setAnagramAns] = useState('')
 
   return (
     <View style={styles.viewContainer}>
@@ -121,12 +123,23 @@ const App = () => {
 
         <TouchableOpacity
           onPress={async () => {
+            let ans = await anagram()
+            setAnagramAns(ans)
+          }}
+          style={styles.button}
+        >
+          <Text style={styles.text}> anagram</Text>
+        </TouchableOpacity>
+
+        <View style={styles.spacer10} />
+        <TouchableOpacity
+          onPress={async () => {
             let ans = await chunked()
             setChunkAns(ans)
           }}
           style={styles.button}
         >
-          <Text style={styles.text}>MaxChar</Text>
+          <Text style={styles.text}>Chunk Array</Text>
         </TouchableOpacity>
         <Text style={styles.textContainer}>{chunkAns}</Text>
       </ScrollView>
