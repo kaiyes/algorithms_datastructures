@@ -35,25 +35,26 @@
 
 const anagram = () => {
   strA = 'Apple'
-  strB = 'Appl1! '
+  strB = '!!!  elppa'
 
   cleanA = strA
     .replace(/[^\w]/g, '')
     .toLowerCase()
-    .split()
+    .split('')
     .sort()
     .join('')
   cleanB = strB
     .replace(/[^\w]/g, '')
     .toLowerCase()
-    .split()
+    .split('')
     .sort()
     .join('')
-
-  if (cleanA === cleanB) {
+  console.log(cleanA, cleanB)
+  if (cleanA == cleanB) {
     console.log('anagram')
   } else {
     console.log('not')
   }
 }
-export default anagram
+
+anagram()

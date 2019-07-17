@@ -1,5 +1,15 @@
-import { AppRegistry } from 'react-native'
-import App from './src/App'
-import { name as appName } from './app.json'
+function same() {
+  a = [1, 2, 2]
+  b = [1, 4, 9]
+  let count = 0
+  for (let char of a) {
+    if (b.includes(Math.pow(char, 2))) {
+      count++
+    }
+  }
 
-AppRegistry.registerComponent(appName, () => App)
+  return count == a.length
+    ? console.log('true')
+    : console.log('false')
+}
+same()
