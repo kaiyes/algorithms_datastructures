@@ -26,7 +26,7 @@ let longestSubStr = async (s1, s2) => {
   }
   console.log(substr.join(''))
 }
-longestSubStr('ABACCD', 'ACDF')
+// longestSubStr('ABACCD', 'ACDF')
 longestSubStr('abazdc', 'bacbad')
 
 // let func = async (s1, s2) => {
