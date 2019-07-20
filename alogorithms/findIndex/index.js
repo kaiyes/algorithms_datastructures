@@ -1,13 +1,11 @@
 function findOne(arr, num) {
-  let index = 0
-  for (let char of arr) {
-    if (char == num) {
-      console.log(index)
-      return index
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === num) {
+      console.log(i)
+      return i
     }
-    index++
   }
-  return false
+  return -1
 }
 
-findOne([1, 12, 33, 123, 12, 11, 22, 44, 55, 666, 4], 33)
+findOne([1, 12, 33, 123, 112, 11, 22, 44, 55, 666, 4], 1)
