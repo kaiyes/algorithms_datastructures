@@ -15,4 +15,8 @@ let vowelCounter = str => {
   return counter
 }
 
-return vowelCounter('abrakadabra')
+let vowelCounter2 = str => {
+  console.log(str.match(/[aeiou]/g).length)
+  return str.length === 0 ? 0 : str.match(/[aeiou]/g).length
+}
+return vowelCounter2('abrakadabra')
