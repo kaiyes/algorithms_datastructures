@@ -6,19 +6,13 @@ function findOdd(A) {
   let charMap = A.map(val =>
     bag[val] ? bag[val]++ : (bag[val] = 1)
   )
-  // find the kets of odd numbers in object and
-  // return the biggest of them
-  let newArr = Object.values(bag).filter(val => {
-    return val % 2 === 1
-  })
-  // if (newArr.length === 1 ) {
-  // character = newArr[0]
-  // }
-  let character = Object.keys(bag).find(
-    val => bag[val] === newArr[0]
-  )
-  console.log(parseInt(character))
-  return parseInt(character)
+
+  for (let char in bag) {
+    if (bag[char] % 2 !== 0) {
+      console.log(char)
+      return char
+    }
+  }
 }
 
 findOdd([
@@ -40,3 +34,17 @@ findOdd([
   -2,
   5,
 ])
+// if more than one repeated odd numbers
+// find the kets of odd numbers in object and
+// return the biggest of them
+// let newArr = Object.values(bag).filter(val => {
+//   return val % 2 === 1
+// })
+// // if (newArr.length === 1 ) {
+// // character = newArr[0]
+// // }
+// let character = Object.keys(bag).find(
+//   val => bag[val] === newArr[0]
+// )
+// console.log(parseInt(character))
+// return parseInt(character)
