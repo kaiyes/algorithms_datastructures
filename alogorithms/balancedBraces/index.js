@@ -18,7 +18,7 @@ let isBalanced = braces => {
   }
   if (stack.length != 0) {
     console.log('false')
-    return 'false'
+    return false
   }
   console.log('true')
   return true
