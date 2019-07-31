@@ -26,3 +26,27 @@ var lastDigit = function(str1, str2) {
 
   return Math.pow(seed, exp) % 10
 }
+
+var lastDigit = function(str1, str2) {
+  if (str2 === '0') return 1
+  var obj = {
+    '0': [0, 0, 0, 0],
+    '1': [1, 1, 1, 1],
+    '2': [6, 2, 4, 8],
+    '3': [1, 3, 9, 7],
+    '4': [6, 4, 6, 4],
+    '5': [5, 5, 5, 5],
+    '6': [6, 6, 6, 6],
+    '7': [1, 7, 9, 3],
+    '8': [6, 8, 4, 2],
+    '9': [1, 9, 1, 9],
+  }
+  var num = str1[str1.length - 1]
+  var n =
+    str2.length > 1
+      ? ((str2[str2.length - 2] + str2[str2.length - 1]) *
+          1) %
+        4
+      : (str2 * 1) % 4
+  return obj[num][n] // fix me
+}
