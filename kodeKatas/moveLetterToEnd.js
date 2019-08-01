@@ -19,4 +19,15 @@ let moveLetter = str => {
   return changed
 }
 
-moveLetter('This is my string !')
+moveLetter2 = s =>
+  s
+    .split(' ')
+    .map(e => e.substr(1) + e[0] + 'ed')
+    .join(' ')
+
+function moveLetter3(str) {
+  return str.replace(/(\w)(\w*)(\s|$)/g, '$2$1ed$3')
+}
+
+moveLetter3('This is my string !')
+console.log(moveLetter3('This is my string !'))
