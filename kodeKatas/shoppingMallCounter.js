@@ -73,6 +73,192 @@ function queueTime(customers, registers) {
   return timeAlotted
 }
 
+function queueTime2(customers, n) {
+  var w = new Array(n).fill(0)
+  for (let t of customers) {
+    let idx = w.indexOf(Math.min(...w))
+    w[idx] += t
+  }
+  return Math.max(...w)
+}
+
+function queueTime3(customers, n) {
+  let tills = Array(n).fill(0)
+
+  customers.forEach(customer => {
+    let nextTill = tills.indexOf(Math.min(...tills))
+    tills[nextTill] += customer
+  })
+
+  return Math.max(...tills)
+}
+
+let queue = []
+
+const queueTime4 = (customers, n) => {
+  let remaining = customers.slice().reverse()
+  let count = 0
+
+  while (queue.length || remaining.length) {
+    count = count + 1
+
+    // add new workers to queue if slots available
+    while (queue.length < n && remaining.length) {
+      queue.push(remaining.splice(-1)[0])
+    }
+
+    // iterate workers in queue and empty complete workers
+    queue = queue.reduce((result, worker) => {
+      worker -= 1
+
+      if (worker > 0) {
+        result.push(worker)
+      }
+
+      return result
+    }, [])
+  }
+
+  return count
+}
+
+function queueTime5(customers, n) {
+  if (!customers || customers.length === 0) return 0
+  if (customers.length <= n)
+    return Math.max.apply(null, customers)
+  var pool = Array.from({ length: n }).map(v => 0),
+    i = 0,
+    len = customers.length,
+    min
+  for (; i < len; i++) {
+    min = Math.min.apply(null, pool)
+    pool[pool.lastIndexOf(min)] += customers[i]
+  }
+  return Math.max.apply(null, pool)
+}
+
+function queueTime6(customers, n) {
+  return Math.max(
+    ...customers.reduce((prev, next) => {
+      prev[prev.indexOf(Math.min(...prev))] += next
+      return prev
+    }, Array(n).fill(0))
+  )
+}
+
+function queueTime7(customers, n) {
+  var isAttended = false
+  var maxTime = 0
+
+  var tillsArr = []
+  for (let i = 0; i < n; i++) {
+    tillsArr.push({ isBusy: false, time: 0, id: i })
+  }
+
+  customers.forEach(customer => {
+    isAttended = false
+    tillsArr.forEach(till => {
+      if (!till.isBusy && !isAttended) {
+        console.log('empty till filled')
+        isAttended = true
+        till.isBusy = true
+        till.time += customer
+      }
+    })
+    if (!isAttended) {
+      tillsArr.sort(function(a, b) {
+        return a.time - b.time
+      })
+      tillsArr[0].time += customer
+    }
+  })
+  tillsArr.sort(function(a, b) {
+    return b.time - a.time
+  })
+  maxTime = tillsArr[0].time
+  return maxTime
+}
+
+function queueTime8(customers, n) {
+  return Math.max(
+    ...customers.reduce((acc, c) => {
+      let i = acc.indexOf(Math.min(...acc))
+      acc[i] = acc[i] + c
+      return acc
+    }, Array(n).fill(0))
+  )
+}
+
+function queueTime9(customers, n) {
+  var heap = Array.apply(Array, { length: n }).map(() => 0)
+  for (var customer of customers) {
+    heap[0] += customer
+    let parentIdx = 0,
+      childIdx
+    while (
+      (childIdx = (parentIdx + 1) * 2 - 1) < heap.length
+    ) {
+      if (
+        childIdx + 1 < heap.length &&
+        heap[childIdx] > heap[childIdx + 1]
+      ) {
+        childIdx += 1
+      }
+      if (heap[parentIdx] <= heap[childIdx]) {
+        break
+      }
+      ;[heap[childIdx], heap[parentIdx]] = [
+        heap[parentIdx],
+        heap[childIdx],
+      ]
+      parentIdx = childIdx
+    }
+  }
+  return Math.max.apply(Math, heap)
+}
+
+function queueTime10(customers, n) {
+  var minutes = 0
+  while (customers.length > 0) {
+    var t = n
+    for (var i = 0; i < t && i < customers.length; i++) {
+      if (--customers[i] === 0) {
+        customers.splice(i--, 1)
+        t--
+      }
+    }
+    minutes++
+  }
+  return minutes
+}
+
+function queueTime11(c, n) {
+  return c.length
+    ? Math.max(
+        ...c
+          .slice(n)
+          .reduce(
+            (t, q) => (
+              (t[t.indexOf(Math.min(...t))] += q), t
+            ),
+            c.slice(0, n)
+          )
+      )
+    : 0
+}
+
+function queueTime12(customers, n) {
+  if (!customers.length || !n) {
+    return 0
+  }
+  let tills = new Array(n).fill(0)
+  customers.map(customer => {
+    let shortest = tills.indexOf(Math.min(...tills))
+    tills[shortest] += customer
+  })
+  return Math.max(...tills)
+}
+
 let res = queueTime1([10, 3, 4, 1], 2)
 
 console.log(res)
