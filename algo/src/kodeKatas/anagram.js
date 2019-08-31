@@ -1,3 +1,5 @@
+//find if one word is anagram of another
+
 let anagram2 = async () => {
   const stringA = 'APPLE!';
   const stringB = 'elppaa';
