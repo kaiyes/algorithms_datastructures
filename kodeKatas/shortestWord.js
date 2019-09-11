@@ -4,6 +4,26 @@
 s =
   'turns out random test cases are easier than writing out basic ones'
 
+// #######################  Reduce #############################
+  // split the string.
+  //reduce it.
+  //provide an acc, Otherwise first value is taken
+  //as acc which is just the word, not length.
+  function findReduced(s) {
+    return s
+      .split(' ')
+      .reduce(
+        (acc, val) => (val.length < acc ? val.length : acc),
+        s.split(' ')[0].length
+      )
+  }
+
+
+
+}
+
+// #####################   Iterative ###############################
+
 function findShort(str) {
   // split the string
   // put the words in object map
@@ -19,9 +39,6 @@ function findShort(str) {
   return Object.values(bag).reduce((acc, val) =>
     acc > val ? val : acc
   )
-}
-
-// #####################   Iterative ###############################
 
 function findShort1(s) {
   return Math.min.apply(
@@ -55,20 +72,5 @@ function findShort3(s) {
     .reduce((a, b) => Math.min(a, b))
 }
 
-// #######################  Reduce #############################
-function findReduced(s) {
-  return s
-    .split(' ')
-    .reduce(
-      (acc, val) => (val.length < acc ? val.length : acc),
-      s.split(' ')[0].length
-    )
-}
-
-function findReduced2(s) {
-  return s
-    .split(' ')
-    .reduce((acc, val) => console.log(acc, val.length))
-}
 
 console.log(findReduced(s))
