@@ -7,16 +7,14 @@
 // rowSum(50) = ?
 
 function rowSumOddNumbers(n) {
-  let array = [];
-  for (var i = 1; i < n; i + 2) {
-    array.push(i);
-  }
-  console.log(array);
-  return array;
+  return Math.pow(n, 3);
 }
 
 // ########################## Other Methods ##########################
 
 // reduce should work here
 
-console.log(rowSumOddNumbers(4));
+console.log(rowSumOddNumbers(48));
+
+//creating an array
+// [...Array(10).keys()]
