@@ -13,7 +13,18 @@ function fib_memo(n, memo = []) {
   return res
 }
 
-// console.log(fib(6))
-console.log(fib_memo(100))
+function fib_memo_easy() {
+  let memo = {}
+  function fib(n) {
+    if (n in memo) return memo[n]
+    if (n <= 2) return 1
+    const res = fib(n - 1) + fib(n - 2)
+    memo[n] = res
+    return res
+  }
+  return fib
+}
 
-1, 1, 2, 3, 5, 8
+const callingClosure = fib_memo_easy()
+// console.log(fib(6))
+console.log(callingClosure(100))
